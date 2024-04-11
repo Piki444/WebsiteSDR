@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const { result } = require('lodash');
 const commentRoutes = require('./routes/commentRoutes');
 
+const port = 5000;
 const app = express();
 
 const dbURI = "mongodb://maxy:p5bikinpusing345@ac-pdylcsc-shard-00-00.4xkwsru.mongodb.net:27017,ac-pdylcsc-shard-00-01.4xkwsru.mongodb.net:27017,ac-pdylcsc-shard-00-02.4xkwsru.mongodb.net:27017/sdr?ssl=true&replicaSet=atlas-897d2m-shard-0&authSource=admin&retryWrites=true&w=majority&appName=sdr";
