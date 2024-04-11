@@ -14,7 +14,7 @@ mongoose.connect(dbURI)
 
 app.set('view engine', 'ejs');
 
-app.listen(3000);
+app.listen(process.env.PORT || port, () => console.log('Listening on port $(port)'));
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
