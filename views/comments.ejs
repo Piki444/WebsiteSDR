@@ -1,0 +1,145 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Delivery Robot | <%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #151515;
+            color: #fff;
+        }
+        header {
+            background-color: #000000;
+            padding: 30px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        section {
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 800px;
+            background-color: #f8a145;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #000000;
+            font-size: 32px;
+            margin-top: 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
+        input[type="submit"] {
+            background-color: #000000;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #333;
+        }
+        .comment {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #d35100;
+            border-radius: 5px;
+        }
+        .comment p {
+            margin: 0;
+        }
+        .comment h3 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+        .comment span {
+            font-style: italic;
+            font-size: 14px;
+        }
+        .footer {
+            background-color: #f8a145;
+            padding: 30px 0;
+            text-align: center;
+            color: #000000;
+        }
+        .footer img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .footer p {
+            margin: 10px 0;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Comments</h1>
+    </header>
+
+    <section id="comments">
+        <% comments.forEach((comment) => { %>
+            <div class="comment">
+                <h3><%= comment.c_name %></h3>
+                <p><%= comment.c_comment %></p>
+                <span>Posted on: <%= comment.createdAt.toDateString() %></span>
+                <form action="/comments/<%= comment._id %>/delete" method="post">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        <% }); %>
+    </section>
+
+    <section>
+        <h2>Add a Comment</h2>
+        <form action="/comments" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="c_name" required><br>
+            <label for="comment">Comment:</label><br>
+            <textarea id="comment" name="c_comment" rows="4" required></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
